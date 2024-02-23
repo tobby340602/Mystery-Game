@@ -1,21 +1,39 @@
 import "./App.css";
+import { useRef, useState } from 'react';
+
+import Landing from "./Pages/Landing";
+import MainGame from "./Pages/MainGame";
 
 function App() {
+  const [isStarted, setIsStarted] = useState(false);
+  const ref = useRef();
+  const startGame = () => {
+    if(!document.fullscreenElement){
+      setIsStarted(true);
+      ref.current.requestFullscreen&&ref.current.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
 
   return (
     <div
+      onClick={startGame}
       className="App"
+      ref={ref}
       style={{
         position: "fixed",
         top: 0,
         left: 0,
-        width: "100%",
+        width: "100vw",
         height: "100vh",
       }}>
-      <iframe
-        title="Mystery-game-frame"
-        src="https://i.simmer.io/@Tobby340602/mystery-game"
-        style={{ width: "100%", height: "100%", border: "none" }}></iframe>
+        {
+          isStarted ? (
+            <MainGame/>
+          ) : (<Landing/>)
+        }
+
     </div>
   );
 }
