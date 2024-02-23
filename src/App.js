@@ -6,21 +6,21 @@ import MainGame from "./Pages/MainGame";
 
 function App() {
   const [isStarted, setIsStarted] = useState(false);
-  const ref = useRef();
+  // const ref = useRef();
   const startGame = () => {
-    if(!document.fullscreenElement){
-      setIsStarted(true);
-      ref.current.requestFullscreen&&ref.current.requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
+    setIsStarted(true);
+    // if(!document.fullscreenElement){
+    //   ref.current.requestFullscreen&&ref.current.requestFullscreen();
+    // } else {
+    //   document.exitFullscreen();
+    // }
   }
 
   return (
     <div
       onClick={startGame}
       className="App"
-      ref={ref}
+      // ref={ref}
       style={{
         position: "fixed",
         top: 0,
